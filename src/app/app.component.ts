@@ -9,5 +9,9 @@ import { RouterOutlet } from '@angular/router';
   styleUrl: './app.component.css'
 })
 export class AppComponent {
-  title = 'buhler-homework';
+  public dateTime = Intl.DateTimeFormat('cs-CZ', { dateStyle: 'medium', timeStyle: 'short' }).format(new Date());
+
+  public onAccountButtonClick(): void {
+    console.log('Account button clicked');
+  }
 }
