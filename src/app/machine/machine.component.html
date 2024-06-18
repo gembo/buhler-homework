@@ -25,7 +25,9 @@
           {{ machine.icon }}
         </span>
       }
-      {{ splitCamelCaseString(machine.name) }}
+      <span data-test="machine-name">
+        {{ splitCamelCaseString(machine.name) }}
+      </span>
     </div>
   </div>
 }

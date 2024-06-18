@@ -3,7 +3,7 @@ export function splitCamelCaseString(camelCaseString: string): string {
   if (camelCaseString && typeof camelCaseString == 'string') {
     return (camelCaseString.charAt(0).toUpperCase() + camelCaseString.slice(1))
       .replace(/([A-Z][a-z]+)/g, ' $1 ')
-      .replace('  ', ' ')
+      .replace(/  /g, ' ')
       .trim();
   }
   return camelCaseString;
