@@ -28,7 +28,7 @@
   </select>
   <button
     type="submit"
-    [disabled]="!statusToggleForm.valid"
+    [disabled]="!statusToggleForm.valid || !statusToggleForm.touched"
     class="disabled:bg-zinc-400 disabled:cursor-not-allowed bg-buhler-teal text-white py-2 px-3 rounded-md font-lg"
   >
     Go!

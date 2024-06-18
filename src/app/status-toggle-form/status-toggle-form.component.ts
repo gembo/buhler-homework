@@ -61,6 +61,7 @@ export class StatusToggleFormComponent implements OnDestroy {
           this.statusToggleForm.controls.status.setValue(
             selectedMachine.status,
           );
+          this.statusToggleForm.markAsUntouched();
         }
       });
   }
