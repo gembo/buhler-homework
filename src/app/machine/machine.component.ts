@@ -1,22 +1,21 @@
 import { Component, Input } from '@angular/core';
-
-type MachineStatus = 'running' | 'alarm' | 'warning';
-
-export type Machine = {
-  icon: string;
-  name: string;
-  status: MachineStatus;
-}
+import { Machine } from '../store/machine.state';
+import { CommonModule } from '@angular/common';
+import { splitCamelCaseString } from '../utils/string';
 
 @Component({
   selector: 'machine-status',
+  standalone: true,
+  imports: [CommonModule],
   templateUrl: './machine.component.html',
 })
 export class MachineComponent {
   @Input() public condensed = false;
   @Input() public machine: Machine | undefined;
 
-  public getBgColourClass(): string {
+  public splitCamelCaseString = splitCamelCaseString;
+
+  public get bgColourClass(): string {
     switch (this.machine?.status) {
       case 'alarm':
         return 'bg-red-600';
@@ -27,7 +26,7 @@ export class MachineComponent {
     }
   }
 
-  public getStatusIcon() {
+  public get statusIcon(): string {
     switch (this.machine?.status) {
       case 'alarm':
         return 'error';

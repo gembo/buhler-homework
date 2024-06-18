@@ -1,0 +1,5 @@
+<div class="flex gap-0 items-center bg-zinc-100 border-b border-zinc-200">
+  @for (machine of lineMachine; track machine.name) {
+    <machine-status [machine]="machine" [condensed]="true" />
+  }
+</div>

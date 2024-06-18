@@ -1,17 +1,18 @@
-<div>
-  <div class="flex justify-between items-center p-6 border-b-4 border-buhler-teal bg-zinc-100">
-    <img class="max-h-8" src="/assets/logo.png" alt="Bühler logo" />
-    <div class="flex gap-4">
-      <div class="flex gap-1 items-center">
-        <span class="material-symbols-outlined">schedule</span>
-        {{dateTime}}
-      </div>
-      <button class="flex gap-1 items-center" (click)="onAccountButtonClick()">
-        <span class="material-symbols-outlined">account_circle</span>
-        Operator
-      </button>
+<div
+  *ngrxLet="lineMachine$ as lineMachine"
+  class="w-full flex flex-col flex-grow min-h-screen text-gray-700"
+>
+  <app-header [lineMachine]="lineMachine" />
+  <main
+    role="main"
+    class="w-full flex flex-col content-center justify-center p-10 flex-grow gap-6"
+  >
+    <div class="w-full xl:w-1/2 m-auto">
+      <line-machine [lineMachine]="lineMachine" />
     </div>
-  </div>
-  <div></div>
+    <div class="w-full xl:w-1/2 m-auto">
+      <status-toggle-form />
+    </div>
+  </main>
 </div>
 <router-outlet />

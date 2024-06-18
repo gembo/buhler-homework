@@ -1,0 +1,18 @@
+<div class="sticky top-0">
+  <div
+    class="flex justify-between items-center p-6 border-b-4 border-buhler-teal bg-zinc-100"
+  >
+    <img class="max-h-8" src="/assets/logo.png" alt="Bühler logo" />
+    <div class="flex gap-4">
+      <div class="flex gap-1 items-center">
+        <span class="material-symbols-outlined">schedule</span>
+        {{ dateTime }}
+      </div>
+      <button class="flex gap-1 items-center" (click)="onAccountButtonClick()">
+        <span class="material-symbols-outlined">account_circle</span>
+        Operator
+      </button>
+    </div>
+  </div>
+  <status-bar [lineMachine]="lineMachine" />
+</div>

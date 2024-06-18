@@ -1,0 +1,36 @@
+<form
+  *ngrxLet="lineMachine$ as lineMachine"
+  [formGroup]="statusToggleForm"
+  (ngSubmit)="setStatus()"
+  class="flex gap-4 items-center p-4 rounded-md border border-zinc-200 bg-zinc-100"
+>
+  <label for="machine" class="text-zinc-500 font-light">Machine: </label>
+  <select
+    id="machine"
+    formControlName="machine"
+    class="font-mono py-2 px-3 rounded-md border border-zinc-200"
+  >
+    @for (machine of lineMachine; track machine.name) {
+      <option [value]="machine.name">
+        {{ splitCamelCaseString(machine.name) }}
+      </option>
+    }
+  </select>
+  <label for="status" class="text-zinc-500 font-light">Status: </label>
+  <select
+    id="status"
+    formControlName="status"
+    class="font-mono py-2 px-3 rounded-md border border-zinc-200"
+  >
+    @for (status of machineStates; track status) {
+      <option [value]="status">{{ splitCamelCaseString(status) }}</option>
+    }
+  </select>
+  <button
+    type="submit"
+    [disabled]="!statusToggleForm.valid"
+    class="disabled:bg-zinc-400 disabled:cursor-not-allowed bg-buhler-teal text-white py-2 px-3 rounded-md font-lg"
+  >
+    Go!
+  </button>
+</form>

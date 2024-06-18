@@ -1,0 +1,8 @@
+<div class="flex flex-col md:flex-row gap-0 justify-between items-center">
+  @for (machine of lineMachine; track machine.name; let last = $last) {
+    <machine-status [machine]="machine" />
+    @if (!last) {
+      <div class="border border-b-4 border-green-700 flex-grow min-w-4"></div>
+    }
+  }
+</div>

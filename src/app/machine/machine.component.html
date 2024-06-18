@@ -1,0 +1,31 @@
+@if (machine) {
+  <div
+    [ngClass]="[
+      'relative flex justify-center items-center p-4 transition-bg duration-500 min-w-48',
+      bgColourClass,
+      condensed ? '' : 'min-h-48',
+    ]"
+  >
+    <div
+      [ngClass]="[
+        'absolute top-4 right-4',
+        machine.status === 'running' ? 'text-green-700' : 'text-white',
+      ]"
+    >
+      <span class="material-symbols-outlined">{{ statusIcon }}</span>
+    </div>
+    <div
+      [ngClass]="{
+        'flex flex-col gap-3 items-center text-lg first-letter:uppercase': true,
+        'text-white': machine.status !== 'running',
+      }"
+    >
+      @if (!condensed) {
+        <span class="material-symbols-outlined text-5xl">
+          {{ machine.icon }}
+        </span>
+      }
+      {{ splitCamelCaseString(machine.name) }}
+    </div>
+  </div>
+}
