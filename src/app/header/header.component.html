@@ -4,10 +4,7 @@
   >
     <img class="max-h-8" src="/assets/logo.png" alt="Bühler logo" />
     <div class="flex gap-4">
-      <div class="flex gap-1 items-center">
-        <span class="material-symbols-outlined">schedule</span>
-        {{ dateTime }}
-      </div>
+      <date-time />
       <button class="flex gap-1 items-center" (click)="onAccountButtonClick()">
         <span class="material-symbols-outlined">account_circle</span>
         Operator

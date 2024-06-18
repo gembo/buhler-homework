@@ -1,4 +1,4 @@
-import { Component, inject } from '@angular/core';
+import { Component, OnDestroy, inject } from '@angular/core';
 import {
   FormGroup,
   FormControl,
@@ -7,7 +7,7 @@ import {
   Validators,
 } from '@angular/forms';
 import { Machine, MachineStatus, machineStates } from '../store/machine.state';
-import { Observable, take, withLatestFrom } from 'rxjs';
+import { Observable, Subject, take, takeUntil, withLatestFrom } from 'rxjs';
 import { LineMachineFacade } from '../store/machine.facade';
 import { splitCamelCaseString } from '../utils/string';
 import { CommonModule } from '@angular/common';
@@ -24,7 +24,7 @@ type StatusToggleForm = {
   imports: [CommonModule, ReactiveFormsModule, LetDirective],
   templateUrl: './status-toggle-form.component.html',
 })
-export class StatusToggleFormComponent {
+export class StatusToggleFormComponent implements OnDestroy {
   public splitCamelCaseString = splitCamelCaseString;
   public machineStates = machineStates;
 
@@ -35,6 +35,7 @@ export class StatusToggleFormComponent {
     });
 
   private readonly facade = inject(LineMachineFacade);
+  private ngDestroy$ = new Subject<void>();
 
   protected lineMachine$: Observable<Machine[]>;
 
@@ -51,7 +52,7 @@ export class StatusToggleFormComponent {
 
     /* When a user selects a machine, we update the status field to match the selected machine state */
     this.statusToggleForm.controls.machine.valueChanges
-      .pipe(withLatestFrom(this.lineMachine$))
+      .pipe(withLatestFrom(this.lineMachine$), takeUntil(this.ngDestroy$))
       .subscribe(([machineName, lineMachine]) => {
         const selectedMachine = lineMachine.find(
           (machine) => machine.name === machineName,
@@ -69,5 +70,10 @@ export class StatusToggleFormComponent {
       this.statusToggleForm.value.machine ?? '',
       this.statusToggleForm.value.status ?? 'running',
     );
+  }
+
+  public ngOnDestroy(): void {
+    this.ngDestroy$.next();
+    this.ngDestroy$.complete();
   }
 }
