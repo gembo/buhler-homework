@@ -4,7 +4,6 @@ import { LineMachine } from './machine.state';
 
 describe('Line machine reducer', () => {
   it('setMachineStatus should set the status of the specified machine', () => {
-
     const action = setMachineStatus({
       machineName: 'testMachineOne',
       status: 'alarm',
@@ -24,6 +23,8 @@ describe('Line machine reducer', () => {
       ],
     };
 
-    expect(lineMachineFeature.reducer(initialState, action)).toEqual(expectedState);
+    expect(lineMachineFeature.reducer(initialState, action)).toEqual(
+      expectedState,
+    );
   });
 });

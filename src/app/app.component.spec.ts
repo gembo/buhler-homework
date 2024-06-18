@@ -19,9 +19,7 @@ describe('AppComponent', () => {
   beforeEach(async () => {
     await TestBed.configureTestingModule({
       imports: [AppComponent],
-      providers: [
-        { provide: LineMachineFacade, useValue: facadeMock }
-      ],
+      providers: [{ provide: LineMachineFacade, useValue: facadeMock }],
     }).compileComponents();
   });
 
